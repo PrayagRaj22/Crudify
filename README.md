@@ -1,8 +1,8 @@
-<center>
+<div align='center'>
 
 # CRUDIFY 🌻
 
-</center>
+</div>
 
 # 🚀 Simple CRUD API
 
