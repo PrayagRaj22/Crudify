@@ -1,0 +1,18 @@
+version: '3.8'
+
+volumes:
+    backend-db:
+
+networks:
+    backend-network:
+
+services:
+    backend:
+        build:
+            context: Dockerfile
+        container_name: "CRUDIFY"
+        ports:
+            - "8000:8000"
+        volumes:
+            - backend-db:/app
+            - .:/app
