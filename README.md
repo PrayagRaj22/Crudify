@@ -6,6 +6,8 @@
 
 # 🚀 Simple CRUD API
 
+## 🔃 v1.0.1-alpha
+
 A lightweight RESTful API that implements basic **Create, Read, Update, Delete (CRUD)** operations.
 Built to demonstrate clean architecture, API design fundamentals, and scalable backend patterns.
 
