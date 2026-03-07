@@ -1,17 +1,17 @@
 <div align='center'>
 
-# CRUDIFY 🌻
+# CRUDIFY
 
 </div>
 
-# 🚀 Simple CRUD API
+# Simple CRUD API
 
 A lightweight RESTful API that implements basic **Create, Read, Update, Delete (CRUD)** operations.
 Built to demonstrate clean architecture, API design fundamentals, and scalable backend patterns.
 
 ---
 
-## 📌 Features
+## Features
 
 - Create new records
 - Retrieve single or multiple records
@@ -24,32 +24,36 @@ Built to demonstrate clean architecture, API design fundamentals, and scalable b
 
 ---
 
-## 🏗️ Tech Stack
+## Tech Stack
 
 - Backend: FastAPI
 - Database: MongoDB
 - ORM/ODM: Mongoose
 - API Testing: Postman
+- CI/CD: GitHub Actions
 
 ---
 
-## ⚙️ Installation
+## Installation
 
 ```bash
 # Clone repository
-git clone https://github.com/your-username/simple-crud-api.git
+git clone https://github.com/dsrathore1/Crudify.git
 
 # Navigate to project
-cd simple-crud-api
+cd Crudify
 
 # Install dependencies
-npm install
+pip install --no-cache-dir -r requirements.txt
+
+# Run the server
+uvicorn main:app --reload
 
 # Server run on:
-http://localhost:5000
+http://localhost:8080
 ```
 
-# 🔒 Future Improvements
+# Future Improvements
 
 - Pagination & filtering
 - Rate limiting
