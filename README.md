@@ -26,12 +26,10 @@ Built to demonstrate clean architecture, API design fundamentals, and scalable b
 
 ## 🏗️ Tech Stack
 
-> Replace with your actual stack
-
-- Backend: Node.js / Express (or your framework)
-- Database: MongoDB / MySQL / PostgreSQL
-- ORM/ODM: Mongoose / Prisma / Sequelize
-- API Testing: Postman / Thunder Client
+- Backend: FastAPI
+- Database: MongoDB
+- ORM/ODM: Mongoose
+- API Testing: Postman
 
 ---
 
@@ -53,13 +51,9 @@ http://localhost:5000
 
 # 🔒 Future Improvements
 
-- Authentication & Authorization (JWT)
 - Pagination & filtering
 - Rate limiting
 - Caching layer
-- Swagger/OpenAPI documentation
 - Unit & integration testing
 - Dockerization
 - CI/CD pipeline
-
-
