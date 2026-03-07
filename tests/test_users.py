@@ -1,9 +1,9 @@
 import pytest
 from fastapi.testclient import TestClient
-from src.routes import api_routes
+from src.routes import user_routes
 from src.routes.items import items
 
-client = TestClient(api_routes)
+client = TestClient(user_routes)
 
 
 @pytest.fixture(autouse=True)
