@@ -1,18 +1,23 @@
 version: '3.8'
 
-volumes:
-    backend-db:
-
 networks:
     backend-network:
+        driver: bridge
 
 services:
     backend:
         build:
-            context: Dockerfile
+            context: .
+            dockerfile: Dockerfile
+
         container_name: "CRUDIFY"
+
         ports:
             - "8000:8000"
+
         volumes:
-            - backend-db:/app
-            - .:/app
+            - .:/data
+
+        networks:
+            - backend-network
+        command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload

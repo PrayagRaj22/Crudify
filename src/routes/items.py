@@ -1,7 +1,7 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-app = FastAPI()
+route = APIRouter(prefix="/items")
 
 # Fake DB
 items = []
@@ -15,20 +15,20 @@ class Item(BaseModel):
 
 
 # CREATE
-@app.post("/items")
+@route.post("/")
 def create_item(item: Item):
     items.append(item)
     return item
 
 
 # READ ALL
-@app.get("/items")
+@route.get("/")
 def get_items():
     return items
 
 
 # READ ONE
-@app.get("/items/{item_id}")
+@route.get("/{item_id}")
 def get_item(item_id: int):
     for item in items:
         if item.id == item_id:
@@ -37,7 +37,7 @@ def get_item(item_id: int):
 
 
 # UPDATE
-@app.put("/items/{item_id}")
+@route.put("/{item_id}")
 def update_item(item_id: int, updated_item: Item):
     for index, item in enumerate(items):
         if item.id == item_id:
@@ -47,7 +47,7 @@ def update_item(item_id: int, updated_item: Item):
 
 
 # DELETE
-@app.delete("/items/{item_id}")
+@route.delete("/{item_id}")
 def delete_item(item_id: int):
     for index, item in enumerate(items):
         if item.id == item_id:
