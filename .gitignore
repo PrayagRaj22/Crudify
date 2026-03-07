@@ -7,3 +7,5 @@ __pycache__
 .env
 
 learn.md
+
+.pytest_cache
