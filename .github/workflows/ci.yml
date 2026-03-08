@@ -1,0 +1,72 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [dev]
+
+  pull_request:
+    branches: [dev, main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+
+      - name: Install Dependencies
+        run: |
+          pip install flake8 black ruff pytest
+          pip install --no-cache-dir -r requirements.txt
+
+      - name: Run Linter
+        run: ruff check .
+
+      - name: Check Formatting
+        run: black --check .
+
+      - name: Run Tests
+        run: pytest
+
+      - name: Build container Image
+        run: |
+          docker build -t backend_apis:${{ github.sha }} -f docker/Dockerfile .
+
+      - name: Scan Container image
+        uses: aquasecurity/trivy-action@v0.20.0
+        with:
+          image-ref: backend_apis:${{ github.sha }}
+
+      - name: Test the container image
+        run: |
+          docker run -d -p 8000:8000 --name test_container backend_apis:${{ github.sha }}
+
+          echo "Waiting for API..."
+
+          for i in {1..10}; do
+            if curl --fail http://localhost:8000; then
+              echo "API is ready"
+              break
+            fi
+            sleep 2
+          done
+
+      - name: Check API response
+        run: |
+          curl --fail http://localhost:8000 | grep "Hello World"
+          curl --fail http://localhost:8000/health
+
+      - name: Cleanup container
+        run: docker rm -f test_container || true
