@@ -3,3 +3,6 @@ __pycache__/
 .env
 *.pyc
 .pytest_cache/
+.ruff_cache/
+.gitignore
+.git
