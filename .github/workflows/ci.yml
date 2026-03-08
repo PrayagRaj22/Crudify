@@ -53,7 +53,7 @@ jobs:
 
       - name: Build container Image
         run: |
-          docker build -t backend_apis:${{ github.sha }} -f docker/Dockerfile .
+          docker build -t backend_apis:${{ github.sha }} .
 
       - name: Scan Docker image with Docker Scan
         run: docker scan backend_apis:${{ github.sha }} || true
