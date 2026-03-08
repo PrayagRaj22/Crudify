@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routes import api_routes, item_routes
+from .routes import api_routes, item_routes
 
 app = FastAPI()
 
@@ -18,4 +18,4 @@ def root_point():
 
 @app.get("/health")
 def health_check():
-    return {"statu": "OK"}
+    return {"status": "OK"}
