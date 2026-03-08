@@ -65,7 +65,7 @@ jobs:
           echo "Waiting for API..."
 
           for i in {1..15}; do
-            if curl --fail http://localhost:8000; then
+            if curl --fail http://127.0.0.1:8000; then
               echo "API is ready"
               break
             fi
@@ -74,8 +74,8 @@ jobs:
 
       - name: Check API response
         run: |
-          curl --fail http://localhost:8000 | grep "Hello World"
-          curl --fail http://localhost:8000/health
+          curl --fail http://127.0.0.1:8000 | grep "Hello World"
+          curl --fail http://127.0.0.1:8000/health
 
       - name: Cleanup container
         run: docker rm -f test_container || true
